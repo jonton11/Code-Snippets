@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CodeSnippet</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= link_to "New Snippet", new_snippet_path %>
+|
+<%= link_to "All Snippets", snippets_path %>
+<hr />
+<%= yield %>
+
+</body>
+</html>
