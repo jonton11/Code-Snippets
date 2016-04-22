@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe SnippetsController, type: :controller do
 
+  let(:snippet) { Snippet.new(title: "title", work: "work") }
+
   describe "#new" do
     before { get :new }
     it "renders a new template" do
@@ -60,24 +62,17 @@ RSpec.describe SnippetsController, type: :controller do
 
   describe "#update" do
     context "with valid params" do
-
-      before do
-        valid_work2 = "valid work 2"
-        s = Snippet.new(title: "valid title", work: "valid work")
-        s.save
-      end
-
+      let(:new_valid_work) { Faker::Hipster.paragraph }
       it "updates the record with the passed id" do
-        s = Snippet.find s.id
-        patch :update, id: s.id, s: {work: valid_work2}
-        expect(s.reload.work).to eq(valid_work2)
+        patch :update, id: snippet.id, snippet: {work: new_valid_work}
+        expect(snippet.reload.work).to eq(new_valid_work)
       end
-      # it "redirects to the show page" do
-      #   expect(response).to redirect_to(snippet_path(s))
-      # end
-      # it "sets a flash message" do
-      #   expect(flash[:notice]).to be
-      # end
+      it "redirects to the show page" do
+        expect(response).to redirect_to(snippet_path(snippet))
+      end
+      it "sets a flash message" do
+        expect(flash[:notice]).to be
+      end
     end
     # context "without valid params" do
     #   it "doesn't update the record of the passed id" do

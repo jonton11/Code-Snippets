@@ -1,19 +1,24 @@
-<%# form_for @snippet do |var| %>
+<h1> New Snippet </h1>
+
+<%= form_for @snippet do |var| %>
 
 <!-- Kind: -->
-<%# var.label :kind, "Kind" %>
-<!-- Need to fix this to go to kind model -->
+<%#= var.label :kind %>
+<%#= var.collection_select :kind_id, Kind.order(:name), :id, :name %>
 
 <!-- Title: -->
-<%#= var.label :title, "Title: " %>
-<%#= var.text_field :title %>
+<%= var.label :title, "Title: " %>
+<%= var.text_field :title %>
+<br /><br />
 
 <!-- Work: -->
-<%#= var.label :work, "Work: " %>
-<%#= var.textarea :work %>
+<%= var.label :work, "Work:" %>
+<br />
+<%= var.text_area :work %>
+<br /><br />
 
 <!-- Submit -->
-<%# var.submit "Save Snippet" %>
+<%= var.submit "Save Snippet" %>
 
 <!-- Notice or alert for success/fail? -->
-<%# end %>
+<% end %>
