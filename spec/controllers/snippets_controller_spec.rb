@@ -58,51 +58,70 @@ RSpec.describe SnippetsController, type: :controller do
     end
   end
 
-  # describe "#update" do
-  #   context "with valid params" do
-  #
-  #     before do
-  #       valid_work2 = "valid work 2"
-  #       s = Snippet.new(title: "valid title", work: "valid work")
-  #       s.save
-  #       patch :update, id: s.id, s: {work: valid_work2}
-  #     end
-  #
-  #     it "updates the record with the passed id" do
-  #       expect(s.reload.work).to eq(valid_work2)
-  #     end
-  #     # it "redirects to the show page" do
-  #     #   expect(response).to redirect_to(snippet_path(s))
-  #     # end
-  #     # it "sets a flash message" do
-  #     #   expect(flash[:notice]).to be
-  #     # end
-  #   end
-  #   # context "without valid params" do
-  #   #   it "doesn't update the record of the passed id" do
-  #   #
-  #   #   end
-  #   #   it "renders the edit template" do
-  #   #
-  #   #   end
-  #   #
-  #   # end
-  # end
+  describe "#update" do
+    context "with valid params" do
 
-  # describe "#show" do
-  #   before do
-  #     get :show, id: snippet.id
-  #   end
-  #
-  #   it "renders the show template" do
-  #     expect(response).to render_template(:show)
-  #   end
-  #
-  #   it "sets a product instance variable" do
-  #     expect(assigns(:snippet)).to eq(snippet)
-  #   end
-  # end
-  # describe "#index"
+      before do
+        valid_work2 = "valid work 2"
+        s = Snippet.new(title: "valid title", work: "valid work")
+        s.save
+      end
+
+      it "updates the record with the passed id" do
+        s = Snippet.find s.id
+        patch :update, id: s.id, s: {work: valid_work2}
+        expect(s.reload.work).to eq(valid_work2)
+      end
+      # it "redirects to the show page" do
+      #   expect(response).to redirect_to(snippet_path(s))
+      # end
+      # it "sets a flash message" do
+      #   expect(flash[:notice]).to be
+      # end
+    end
+    # context "without valid params" do
+    #   it "doesn't update the record of the passed id" do
+    #
+    #   end
+    #   it "renders the edit template" do
+    #
+    #   end
+    #
+    # end
+  end
+
+  describe "#show" do
+    snippet = Snippet.new(title: "title", work: "work")
+    snippet.save
+    before do
+      get :show, id: snippet.id
+    end
+
+    it "renders the show template" do
+      expect(response).to render_template(:show)
+    end
+
+    it "sets a snippet instance variable" do
+      expect(assigns(:snippet)).to eq(snippet)
+    end
+  end
+
+  describe "#index" do
+    it "renders the index page" do
+      get :index
+      expect(response).to render_template(:index)
+    end
+
+    it "assigns an instance variable to all snippets in the database" do
+      s1 = Snippet.new(title: "valid title", work: "valid work")
+      s2 = Snippet.new(title: "valid title2", work: "valid work2")
+      s1.save
+      s2.save
+      get :index
+      # What's the better way to do this? FactoryGirl? getting DB errors
+      expect(assigns(:snippets)).to eq([s1, s2])
+    end
+  end
 
 end
 

@@ -3,6 +3,7 @@
 1. Build a tool in Rails that helps you store code snippets.
 
 2. You must have test coverage (doesn't have to be a 100%) for creating and updating the snippet kinds and the snippets.
+----> Only need to finish #update
 
 3. The box must accept markdown. Make sure to have the code highlighted properly depending on the language.
 
