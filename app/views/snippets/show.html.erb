@@ -9,5 +9,7 @@ Language: <%= @snippet.language %>
 <div>  <%= markdown(@snippet.work) %></div>
 
 <%= link_to "Edit", edit_snippet_path(@snippet) %>
+|
+<%= link_to "#{@snippet.kind.name} Snippets", kind_path(@snippet.kind) %>
 
 </div>
