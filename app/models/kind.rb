@@ -1,5 +1,7 @@
-class Kind < ActiveRecord::Base
+class Kind < ActiveRecord::Base # :nodoc:
+  has_many :snippets, dependent: :destroy
 
-  # validations
-
+  def name_of(thing)
+    find(thing)
+  end
 end

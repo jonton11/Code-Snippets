@@ -1,0 +1,34 @@
+<h1> Edit Snippet </h1>
+
+<% alert %>
+<div class="container">
+
+<%= form_for @snippet do |snip| %>
+
+<!-- Kind: -->
+<div>
+  <%= snip.label :kind, "Kind: " %>
+  <%= snip.collection_select :kind_id, Kind.order(:name), :id, :name %>
+</div>
+
+<!-- Title: -->
+<div>
+  <%= snip.label :title, "Title: " %>
+  <%= snip.text_field :title %>
+</div>
+
+<!-- Work: -->
+<div>
+  <%= snip.label :work, "Work:" %>
+  <br />
+  <%= snip.text_area :work %>
+</div>
+<br /><br />
+
+<!-- Submit -->
+<%= snip.submit "Save Snippet" %>
+
+<!-- Notice or alert for success/fail? -->
+<% end %>
+
+</div>

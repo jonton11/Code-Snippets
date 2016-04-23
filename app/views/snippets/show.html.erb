@@ -1,0 +1,13 @@
+<h1>Snippet</h1>
+
+<div class = "container">
+
+Language: <%= @snippet.language %>
+
+<h3> <%= @snippet.title %> </h3>
+
+<div>  <%= markdown(@snippet.work) %></div>
+
+<%= link_to "Edit", edit_snippet_path(@snippet) %>
+
+</div>

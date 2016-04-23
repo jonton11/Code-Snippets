@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe SnippetsController, type: :controller do
 
-  let(:snippet) { Snippet.new(title: "title", work: "work") }
+  let(:snippet) { Snippet.create(title: "title", work: "work") }
 
   describe "#new" do
     before { get :new }
@@ -49,40 +49,46 @@ RSpec.describe SnippetsController, type: :controller do
   end
 
   describe "#edit" do
-    s = Snippet.new(title: "valid title", work: "valid work")
-    s.save
-    before { get :edit, id: s.id }
+
+    before { get :edit, id: snippet.id }
     it "renders the edit template" do
       expect(response).to render_template(:edit)
     end
     it "sets an instance variable to the passed id" do
-      expect(assigns(:snippet)).to eq(s)
+      expect(assigns(:snippet)).to eq(snippet)
     end
   end
 
   describe "#update" do
     context "with valid params" do
+
       let(:new_valid_work) { Faker::Hipster.paragraph }
+      before { patch :update, id: snippet.id, snippet: {work: new_valid_work} }
+
       it "updates the record with the passed id" do
-        patch :update, id: snippet.id, snippet: {work: new_valid_work}
         expect(snippet.reload.work).to eq(new_valid_work)
       end
+
       it "redirects to the show page" do
         expect(response).to redirect_to(snippet_path(snippet))
       end
+
       it "sets a flash message" do
         expect(flash[:notice]).to be
       end
+
     end
-    # context "without valid params" do
-    #   it "doesn't update the record of the passed id" do
-    #
-    #   end
-    #   it "renders the edit template" do
-    #
-    #   end
-    #
-    # end
+    context "without valid params" do
+      before { patch :update, id: snippet.id, snippet: {title: ""} }
+
+      it "doesn't update the record of the passed id" do
+        expect(snippet.title).to eq(snippet.reload.title)
+      end
+      it "renders the edit template" do
+        expect(response).to render_template(:edit)
+      end
+
+    end
   end
 
   describe "#show" do

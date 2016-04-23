@@ -1,0 +1,9 @@
+<h2>All <%= @kind.name %> Snippets</h2>
+
+<div class="container">
+  <% @kind.snippets.each do |snippet| %>
+  <div>
+    <%= link_to snippet.title, snippet_path(snippet) %>
+  </div>
+  <% end %>
+</div>
