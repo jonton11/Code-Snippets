@@ -11,5 +11,6 @@ Language: <%= @snippet.language %>
 <%= link_to "Edit", edit_snippet_path(@snippet) %>
 |
 <%= link_to "#{@snippet.kind.name} Snippets", kind_path(@snippet.kind) %>
-
+|
+<%= link_to "All Snippets", snippets_path %>
 </div>
