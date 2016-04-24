@@ -1,121 +1,115 @@
 require 'rails_helper'
 
 RSpec.describe SnippetsController, type: :controller do
+  let(:snippet) { Snippet.create(title: 'title', work: 'work') }
 
-  let(:snippet) { Snippet.create(title: "title", work: "work") }
-
-  describe "#new" do
+  describe '#new' do
     before { get :new }
-    it "renders a new template" do
+    it 'renders a new template' do
       expect(response).to render_template(:new)
     end
-    it "assigns a snippet object to an instance variable" do
+    it 'assigns a snippet object to an instance variable' do
       expect(assigns(:snippet)).to be_a_new(Snippet)
     end
   end
 
-  describe "#create" do
-    context "with valid params" do
+  describe '#create' do
+    context 'with valid params' do
       def valid_request
-        post :create, snippet: {title: "ruby code", work: "def method end"}
+        post :create, snippet: { title: 'ruby code', work: 'def method end' }
       end
 
-      it "saves a record to the database" do
+      it 'saves a record to the database' do
         expect { valid_request }.to change { Snippet.count }.by(1)
       end
-      it "redirects to the snippet show page" do
+      it 'redirects to the snippet show page' do
         valid_request
         expect(response).to redirect_to(snippet_path(Snippet.last))
       end
-      it "sets a flash message" do
+      it 'sets a flash message' do
         valid_request
         expect(flash[:notice]).to be
       end
     end
 
-    context "without valid params" do
+    context 'without valid params' do
       def invalid_request
         post :create, snippet: { title: nil, work: nil }
       end
-      it "renders the new template" do
+      it 'renders the new template' do
         invalid_request
         expect(response).to render_template(:new)
       end
-      it "doesn't save a record to the database" do
-        expect{ invalid_request }.to change{ Snippet.count }.by(0)
+      it 'does not save a record to the database' do
+        expect { invalid_request }.to change { Snippet.count }.by(0)
       end
     end
-
   end
 
-  describe "#edit" do
-
+  describe '#edit' do
     before { get :edit, id: snippet.id }
-    it "renders the edit template" do
+    it 'renders the edit template' do
       expect(response).to render_template(:edit)
     end
-    it "sets an instance variable to the passed id" do
+    it 'sets an instance variable to the passed id' do
       expect(assigns(:snippet)).to eq(snippet)
     end
   end
 
-  describe "#update" do
-    context "with valid params" do
-
+  describe '#update' do
+    context 'with valid params' do
       let(:new_valid_work) { Faker::Hipster.paragraph }
-      before { patch :update, id: snippet.id, snippet: {work: new_valid_work} }
+      before { patch :update, id: snippet.id, snippet: { work: new_valid_work } }
 
-      it "updates the record with the passed id" do
+      it 'updates the record with the passed id' do
         expect(snippet.reload.work).to eq(new_valid_work)
       end
 
-      it "redirects to the show page" do
+      it 'redirects to the show page' do
         expect(response).to redirect_to(snippet_path(snippet))
       end
 
-      it "sets a flash message" do
+      it 'sets a flash message' do
         expect(flash[:notice]).to be
       end
-
     end
-    context "without valid params" do
-      before { patch :update, id: snippet.id, snippet: {title: ""} }
+    context 'without valid params' do
+      before { patch :update, id: snippet.id, snippet: { title: '' } }
 
-      it "doesn't update the record of the passed id" do
+      it 'does not update the record of the passed id' do
         expect(snippet.title).to eq(snippet.reload.title)
       end
-      it "renders the edit template" do
+      it 'renders the edit template' do
         expect(response).to render_template(:edit)
       end
-
     end
   end
 
-  describe "#show" do
-    snippet = Snippet.new(title: "title", work: "work")
+  describe '#show' do
+    snippet = Snippet.new(title: 'title', work: 'work')
     snippet.save
     before do
       get :show, id: snippet.id
     end
 
-    it "renders the show template" do
+    it 'renders the show template' do
       expect(response).to render_template(:show)
     end
 
-    it "sets a snippet instance variable" do
+    it 'sets a snippet instance variable' do
       expect(assigns(:snippet)).to eq(snippet)
     end
   end
 
-  describe "#index" do
-    it "renders the index page" do
+  describe '#index' do
+    it 'renders the index page' do
       get :index
       expect(response).to render_template(:index)
     end
 
-    it "assigns an instance variable to all snippets in the database" do
-      s1 = Snippet.new(title: "valid title", work: "valid work")
-      s2 = Snippet.new(title: "valid title2", work: "valid work2")
+    it 'assigns an instance variable to all snippets in the database' do
+      s1 = Snippet.new(title: 'valid title', work: 'valid work')
+      s2 = Snippet.new(title: 'valid title2', work: 'valid work2')
       s1.save
       s2.save
       get :index
@@ -123,8 +117,4 @@ RSpec.describe SnippetsController, type: :controller do
       expect(assigns(:snippets)).to eq([s1, s2])
     end
   end
-
 end
-
-#redcarpet
-#coderay
