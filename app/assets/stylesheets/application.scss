@@ -6,7 +6,7 @@ h1, h2 {
 }
 
 form div {
-  margin: 30px 0;
+  margin: 15px 0;
 }
 
 textarea {
@@ -15,5 +15,10 @@ textarea {
 }
 
 .container {
-  margin: 15px;
+  margin: 20px;
+}
+
+.line-numbers a {
+  padding-right: 20px;
+  color: rgba(51, 122, 183, 0.36)
 }

@@ -1,12 +1,15 @@
-<h1>Snippet</h1>
+<div class="container">
+  <h3><%= @snippet.title %></h3>
+  Language: <%= @snippet.language %>
+<hr>
 
-<div class = "container">
+<% if @snippet.is_markdown? %>
+  <%= markdown(@snippet.work) %>
+<% else %>
+  <%= markdown(@snippet.wrap_in_pre_tags) %>
+<% end %>
 
-Language: <%= @snippet.language %>
-
-<h3> <%= @snippet.title %> </h3>
-
-<div>  <%= markdown(@snippet.work) %></div>
+<hr>
 
 <%= link_to "Edit", edit_snippet_path(@snippet) %>
 |

@@ -7,9 +7,6 @@ class SnippetsController < ApplicationController # :nodoc:
     snippet_params = params.require(:snippet).permit(:title, :work, :kind_id)
     @snippet = Snippet.new snippet_params
 
-    if @snippet.language != 'Markdown'
-      @snippet.work = "```#{@snippet.language}\n" + @snippet.work + "\n```"
-    end
     if @snippet.save
       redirect_to @snippet, notice: 'Snippet saved'
     else
@@ -26,10 +23,6 @@ class SnippetsController < ApplicationController # :nodoc:
     @snippet = Snippet.find params[:id]
     snippet_params = params.require(:snippet).permit(:title, :work, :kind_id)
 
-    if @snippet.language != 'Markdown'
-      @snippet.work = "```#{@snippet.language}\n" + @snippet.work + "\n```"
-    end
-    # Still a little buggy, update doesn't always add the markdown tags
     if @snippet.update snippet_params
       redirect_to snippet_path(@snippet), notice: 'Updated!'
     else

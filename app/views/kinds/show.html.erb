@@ -2,10 +2,10 @@
 
 <div class="container">
   <% @kind.snippets.each do |snippet| %>
-  <div>
+
     <%= link_to snippet.title, snippet_path(snippet) %>
-  </div>
+
   <% end %>
-  <br />
+  <hr />
   <%= link_to "All Snippets", snippets_path %>
 </div>
