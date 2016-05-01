@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'redcarpet'
-gem 'rouge'
+# gem 'rouge'
 gem 'coderay'
 # Gems used for displaying syntax highlighting
 
