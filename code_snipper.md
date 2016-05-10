@@ -1,11 +1,10 @@
 # Code Snippet Application
 
-1. Build a tool in Rails that helps you store code snippets.
+1. Build a tool in Rails that helps you store code snippets. => Completed
 
-2. You must have test coverage (doesn't have to be a 100%) for creating and updating the snippet kinds and the snippets.
-----> Only need to finish #update
+2. You must have test coverage (doesn't have to be a 100%) for creating and updating the snippet kinds and the snippets. => Completed
 
-3. The box must accept markdown. Make sure to have the code highlighted properly depending on the language.
+3. The box must accept markdown. Make sure to have the code highlighted properly depending on the language. => Completed
 
 Note: avoid using `type` as a column name in models. More on that will come later. This is why the wireframe uses `Kind`, you can pick another word if you'd like just don't use `type`.  
 
@@ -16,14 +15,14 @@ Note: avoid using `type` as a column name in models. More on that will come late
 - Use gems `redcarpet` and `coderay`
   - syntax highlighting for several languages
 
-
 - Snippet model contains title, work:text
   - title, work:text
   - index page lists kinds with the associated counts
   - Show page lists a single entry with syntax highlighting
   - New page contains the form in which to submit a new code snippet
 
-
 - Kind will be a separate model with a One-To-Many association with Snippet
   - One Kind can have Many Snippets
   - Kind model will only contain one field: title
+
+- 
