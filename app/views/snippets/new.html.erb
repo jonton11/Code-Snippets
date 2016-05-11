@@ -1,34 +1,15 @@
-<h1> New Snippet </h1>
-
-<% alert %>
 <div class="container">
+  <h1> New Snippet </h1>
 
-<%= form_for @snippet do |snip| %>
-
-<!-- Kind: -->
-<div>
-  <%= snip.label :kind, "Kind: " %>
-  <%= snip.collection_select :kind_id, Kind.order(:name), :id, :name %>
-</div>
-
-<!-- Title: -->
-<div>
-  <%= snip.label :title, "Title: " %>
-  <%= snip.text_field :title %>
-</div>
-
-<!-- Work: -->
-<div>
-  <%= snip.label :work, "Work:" %>
-  <br />
-  <%= snip.text_area :work %>
-</div>
-<br /><br />
-
-<!-- Submit -->
-<%= snip.submit "Save Snippet" %>
-
-<!-- Notice or alert for success/fail? -->
-<% end %>
+  <%= simple_form_for @snippet do |snip| %>
+    <!-- Title -->
+    <%= snip.input :title, label: false, placeholder: "Snippet Title" %>
+    <!-- Work -->
+    <%= snip.input :work, as: :text, label: false, placeholder: "Enter code here" %>
+    <!-- Kind -->
+    <%= snip.association :kind, as: :select %>
+    <!-- Submit -->
+    <%= snip.submit label: "Save Snippet", class: "btn btn-primary"%>
+  <% end %>
 
 </div>

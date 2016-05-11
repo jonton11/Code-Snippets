@@ -4,6 +4,12 @@ Rails.application.routes.draw do
 
   resources :snippets
   resources :kinds, only: [:show]
+  resources :users, only: [:new, :create]
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+  end
+
+  root 'snippets#index'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
