@@ -25,4 +25,4 @@ Note: avoid using `type` as a column name in models. More on that will come late
   - One Kind can have Many Snippets
   - Kind model will only contain one field: title
 
-- 
+- User has_many snippets, snippet belongs_to User. => May have to implement favorites.

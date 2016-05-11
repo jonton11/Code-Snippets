@@ -1,0 +1,12 @@
+<div class="container">
+  <h1> Sign Up </h1>
+
+  <%= simple_form_for @user do |user| %>
+    <%= user.input :first_name, label: false, placeholder: "First Name" %>
+    <%= user.input :last_name, label: false, placeholder: "Last Name" %>
+    <%= user.input :email, label: false, placeholder: "Email" %>
+    <%= user.input :password, label: false, placeholder: "Password" %>
+    <%= user.input :password_confirmation, label: false, placeholder: "Password Confirmation" %>
+    <%= user.submit "Sign Up", class: "btn btn-primary"%>
+  <% end  %>
+</div>
