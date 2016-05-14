@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection
   end
-
+  resources :favorites, only: [:create]
   root 'snippets#index'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

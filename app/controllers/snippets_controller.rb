@@ -4,7 +4,8 @@ class SnippetsController < ApplicationController # :nodoc:
   end
 
   def create
-    snippet_params = params.require(:snippet).permit(:title, :work, :kind_id)
+    snippet_params = params.require(:snippet).permit(:title, :work, :kind_id, :favorite)
+    # migration may be wrong => favorite may have to be a boolean
     @snippet = Snippet.new snippet_params
 
     if @snippet.save

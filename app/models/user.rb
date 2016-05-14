@@ -7,6 +7,8 @@ class User < ActiveRecord::Base # :nodoc:
 
   validates_presence_of :first_name, :last_name
 
+  has_many :favorites, dependent: :destroy
+
   def full_name
     "#{first_name} #{last_name}"
   end

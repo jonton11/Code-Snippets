@@ -25,4 +25,10 @@ Note: avoid using `type` as a column name in models. More on that will come late
   - One Kind can have Many Snippets
   - Kind model will only contain one field: title
 
-- User has_many snippets, snippet belongs_to User. => May have to implement favorites.
+- User has_many snippets, snippet belongs_to User. => May have to implement similar to favorites.
+  - Instead of creating "favorite" on show page we display it in the new page
+  - user has many favorites
+  - use "favorites" for controller and "favorite" for model => may run into issues with using keywords such as "privates" or "private" controller, model respectively
+  - favorite as a parameter will be boolean
+- Keep total count as all included but not visible when viewing kinds
+- Do we need another controller?
